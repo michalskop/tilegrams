@@ -34,6 +34,8 @@ function selectDataset(geography, index, customCsv) {
     datasetResource.getDataset(geography, index) :
     datasetResource.buildDatasetFromCustomCsv(geography, customCsv)
   importing = false
+  metrics.sumMetrics = dataset.data.reduce((sum, row) => sum + row[1], 0)
+  if (dataset.defaultResolution) metrics.metricPerTile = dataset.defaultResolution
   ui.setSelectedDataset(dataset)
   canvas.computeCartogram(dataset)
 
@@ -154,6 +156,20 @@ function init() {
   })
   ui.setImportCallback(loadTopoJson)
   ui.setGeographySelectCallback(selectGeography)
+  ui.setSaveCallback(geography => {
+    const json = exporter.toTopoJson(
+      canvas.getGrid().getTiles(),
+      ui.getSelectedDataset(),
+      metrics.metricPerTile,
+      geography
+    )
+    const filename = `${geography.toLowerCase().replace(/\s+/g, '-')}-work.json`
+    startDownload({
+      filename,
+      mimeType: 'text/plain',
+      content: JSON.stringify(json),
+    })
+  })
 
   selectGeography(defaultGeography)
 
@@ -171,10 +187,14 @@ function resize() {
 window.onresize = resize
 resize()
 
-// Ignore ctrl-Z altogether
 document.addEventListener('keydown', event => {
   if (event.metaKey && event.key === 'z') {
     event.preventDefault()
+  }
+  if (event.key === 'r' || event.key === 'R') {
+    if (event.target.type !== 'textarea' && event.target.type !== 'text') {
+      canvas.resetViewport()
+    }
   }
 })
 

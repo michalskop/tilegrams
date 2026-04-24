@@ -1,0 +1,50 @@
+{
+  "1": {
+    "name": "Śląskie (Katowice)"
+  },
+  "2": {
+    "name": "Opolskie (Opole)"
+  },
+  "3": {
+    "name": "Wielkopolskie (Poznań)"
+  },
+  "4": {
+    "name": "Zachodniopomorskie (Szczecin)"
+  },
+  "5": {
+    "name": "Świętokrzyskie (Kielce)"
+  },
+  "6": {
+    "name": "Kujawsko-pomorskie (Bydgoszcz, Toruń)"
+  },
+  "7": {
+    "name": "Podlaskie (Białystok)"
+  },
+  "8": {
+    "name": "Dolnośląskie (Wrocław)"
+  },
+  "9": {
+    "name": "Podkarpackie (Rzeszów)"
+  },
+  "10": {
+    "name": "Małopolskie (Kraków)"
+  },
+  "11": {
+    "name": "Pomorskie (Gdańsk)"
+  },
+  "12": {
+    "name": "Warmińsko-mazurskie (Olsztyn)"
+  },
+  "13": {
+    "name": "Łódzkie (Łódź)"
+  },
+  "14": {
+    "name": "Mazowieckie (Warszawa)"
+  },
+  "15": {
+    "name": "Lubelskie (Lublin)"
+  },
+  "16": {
+    "name": "Lubuskie (Gorzów Wlkp, Zielona Góra)"
+  }
+}

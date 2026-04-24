@@ -20,7 +20,7 @@ function updateCanvasSize() {
  * target min and max number of tiles for map output
  * used to calculate a dataset's domain
  */
-const nTileDomain = [80, 1000]
+const nTileDomain = [20, 10000] // [80, 1000]
 
 /** dat.gui for realtime updating of properties */
 class Settings {

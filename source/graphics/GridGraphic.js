@@ -370,15 +370,29 @@ export default class GridGraphic extends Graphic {
     gridGeometry.forEachTilePosition((x, y) => {
       this._drawTile({x, y}, '#fff', {ctx})
     })
+    ctx.strokeStyle = '#ccc'
+    ctx.lineWidth = 0.5 * devicePixelRatio
+    gridGeometry.forEachTilePosition((x, y) => {
+      const center = gridGeometry.tileCenterPoint({x, y})
+      const points = gridGeometry.getPointsAround(center)
+      ctx.beginPath()
+      points.forEach((point, index) => {
+        if (index === 0) ctx.moveTo(...point)
+        else ctx.lineTo(...point)
+      })
+      ctx.closePath()
+      ctx.stroke()
+    })
   }
 
-  render(ctx) {
+  render(ctx, zoom) {
     this._ctx = ctx
+    this._renderZoom = zoom || 1
 
     this._populateTileIdArray()
 
     // background pattern
-    ctx.drawImage(this._backgroundCanvas, 0, 0);
+    ctx.drawImage(this._backgroundCanvas, 0, 0)
 
     // draw tiles and inland borders
     this._tiles.forEach(tile => {
@@ -393,7 +407,6 @@ export default class GridGraphic extends Graphic {
     // draw highlighted region border
     if (this._highlightId && !this._makingMarqueeSelection && !this._draggingMultiSelect) {
       this._drawGeoBorder(this._highlightId)
-      this._showGeoName(this._highlightId)
     }
 
     // draw selected tiles
@@ -427,8 +440,34 @@ export default class GridGraphic extends Graphic {
     if (this._makingMarqueeSelection) {
       this._drawMarqueeSelection()
     }
+  }
 
-    this._drawClusterLabels()
+  /** Draw text overlays in screen space (called outside the zoom/pan transform). */
+  renderOverlays(ctx, zoom, panXDev, panYDev) {
+    if (this._labels) {
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.fillStyle = 'black'
+      ctx.font = `${12.0 * devicePixelRatio}px Fira Sans`
+      this._labels.forEach(label => {
+        const geoCode = this.geoCodeToName[label.id]
+        const text = geoCode ? geoCode.name_short || label.id : label.id
+        ctx.fillText(
+          text,
+          (label.position.x * zoom) + panXDev,
+          (label.position.y * zoom) + panYDev
+        )
+      })
+    }
+    if (this._highlightId && !this._makingMarqueeSelection && !this._draggingMultiSelect) {
+      ctx.textAlign = 'left'
+      ctx.textBaseline = 'top'
+      ctx.fillStyle = 'black'
+      ctx.font = `${14.0 * devicePixelRatio}px Fira Sans`
+      const geoCode = this.geoCodeToName[this._highlightId]
+      const text = geoCode ? geoCode.name : this._highlightId
+      ctx.fillText(text, 40, 30)
+    }
   }
 
   _positionClusterLabels() {
@@ -486,7 +525,7 @@ export default class GridGraphic extends Graphic {
 
     // stroke
     this._ctx.strokeStyle = '#333'
-    this._ctx.lineWidth = 0.25 * devicePixelRatio
+    this._ctx.lineWidth = (0.25 * devicePixelRatio) / this._renderZoom
     this._ctx.strokeRect(...rect)
 
     // fill
@@ -514,7 +553,7 @@ export default class GridGraphic extends Graphic {
     }
     if (drawStroke) {
       ctx.strokeStyle = selectedTileBorderColor
-      ctx.lineWidth = 1.0 * devicePixelRatio
+      ctx.lineWidth = (1.0 * devicePixelRatio) / this._renderZoom
       ctx.stroke()
     }
   }
@@ -536,7 +575,7 @@ export default class GridGraphic extends Graphic {
       this._ctx.closePath()
       this._ctx.globalAlpha = 0.75
       this._ctx.strokeStyle = hoveredTileBorderColor
-      this._ctx.lineWidth = 1.0 * devicePixelRatio
+      this._ctx.lineWidth = (1.0 * devicePixelRatio) / this._renderZoom
       this._ctx.stroke()
       this._ctx.globalAlpha = 1.0
     })
@@ -617,7 +656,7 @@ export default class GridGraphic extends Graphic {
     this._ctx.lineTo(...toPoint)
     this._ctx.closePath()
     this._ctx.strokeStyle = selectedTileBorderColor
-    this._ctx.lineWidth = 1.0 * devicePixelRatio
+    this._ctx.lineWidth = (1.0 * devicePixelRatio) / this._renderZoom
     this._ctx.stroke()
   }
 

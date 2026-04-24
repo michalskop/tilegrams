@@ -27,9 +27,18 @@ export default class MapGraphic extends Graphic {
 
   /** Apply topogram on topoJson using data in properties */
   computeCartogram(dataset) {
+    // eslint-disable-next-line no-console
+    console.info(`[cartogram] START geography=${dataset.geography} dataRows=${dataset.data.length}`)
+    if (dataset.data.length > 0) {
+      // eslint-disable-next-line no-console
+      const r = dataset.data[0]
+      // eslint-disable-next-line no-console
+      console.info(`[cartogram] first row: id=${r[0]} (${typeof r[0]}) val=${r[1]}`)
+    }
+
     topogram.value(feature => {
-      const v = dataset.data.find(datum => datum[0] === feature.id)[1]
-      return v
+      const datum = dataset.data.find(d => d[0] === feature.id)
+      return datum ? datum[1] : 1
     })
     this._iterationCount = 0
     this._iterationDuration = 0
@@ -39,11 +48,30 @@ export default class MapGraphic extends Graphic {
 
     // generate basemap for topogram
     this._baseMap = this._getbaseMapTopoJson(dataset)
+    const numFeatures = this._baseMap.geometries.length
+    const totalPts = this._baseMap.topo.arcs
+      ? this._baseMap.topo.arcs.reduce((s, a) => s + a.length, 0) : 0
+    const matchCount = this._baseMap.geometries.filter(g => {
+      return dataset.data.some(d => d[0] === g.id)
+    }).length
+    // eslint-disable-next-line no-console
+    // eslint-disable-next-line no-console
+    console.info(`[cartogram] f=${numFeatures} pts=${totalPts} match=${matchCount}/${numFeatures}`)
+
+    const t0 = performance.now()
+    const savedLog = console.log // eslint-disable-line no-console
+    console.log = () => {} // eslint-disable-line no-console
     this._stateFeatures = topogram(
       this._baseMap.topo,
       this._baseMap.geometries
     )
+    console.log = savedLog // eslint-disable-line no-console
+    // eslint-disable-next-line no-console
+    console.info(`[cartogram] initial topogram: ${(performance.now() - t0).toFixed(0)}ms`)
+
     this._precomputeBounds()
+    // eslint-disable-next-line no-console
+    console.info(`[cartogram] bounds: ${JSON.stringify(this._generalBounds)}`)
   }
 
   /**
@@ -83,15 +111,35 @@ export default class MapGraphic extends Graphic {
     if (percentageDone >= 1) {
       return [false, percentageDone]
     }
-    const then = Date.now()
+    const prevStateFeatures = this._stateFeatures
+    const then = performance.now()
     const mapResource = geographyResource.getMapResource(geography)
     topogram.projection(x => x)
 
     const topoJson = exporter.fromGeoJSON(this._stateFeatures, mapResource.getObjectId())
-    this._stateFeatures = topogram(topoJson, topoJson.objects[mapResource.getObjectId()].geometries)
+    const savedLog2 = console.log // eslint-disable-line no-console
+    console.log = () => {} // eslint-disable-line no-console
+    const iterGeoms = topoJson.objects[mapResource.getObjectId()].geometries
+    this._stateFeatures = topogram(topoJson, iterGeoms)
+    console.log = savedLog2 // eslint-disable-line no-console
     this._precomputeBounds()
+
+    if (!isFinite(this._generalBounds[0][0])) {
+      // Features degenerated (NaN cascade from near-zero-area municipality).
+      // Restore last valid state so updateTilesFromMetrics can still populate tiles.
+      // eslint-disable-next-line no-console
+      console.info(`[carto] degeneration at iter ${this._iterationCount + 1} — rolling back`)
+      this._stateFeatures = prevStateFeatures
+      this._precomputeBounds()
+      return [false, 1.0]
+    }
+
     this._iterationCount++
-    this._iterationDuration += Date.now() - then
+    const elapsed = performance.now() - then
+    this._iterationDuration += elapsed
+    const pct = percentageDone.toFixed(2)
+    // eslint-disable-next-line no-console
+    console.info(`[carto] iter ${this._iterationCount} ${elapsed.toFixed(0)}ms pct=${pct}`)
     return [true, percentageDone]
   }
 
@@ -110,12 +158,17 @@ export default class MapGraphic extends Graphic {
     const pathProjection = geoPath()
     this._generalBounds = [[Infinity, Infinity], [-Infinity, -Infinity]]
     this._projectedStates = this._stateFeatures.features.map(feature => {
-      const hasMultiplePaths = feature.geometry.type === 'MultiPolygon'
+      const {type, coordinates} = feature.geometry
       const bounds = pathProjection.bounds(feature)
       updateBounds(this._generalBounds, bounds)
-      const paths = feature.geometry.coordinates
-        .filter(path => area(hasMultiplePaths ? path[0] : path) > MIN_PATH_AREA)
-        .map(path => [hasMultiplePaths ? path[0] : path])
+      // Build {outer, holes} per polygon for correct point-in-polygon testing
+      let polygons
+      if (type === 'MultiPolygon') {
+        polygons = coordinates.map(polygon => ({outer: polygon[0], holes: polygon.slice(1)}))
+      } else {
+        polygons = [{outer: coordinates[0], holes: coordinates.slice(1)}]
+      }
+      const paths = polygons.filter(p => area(p.outer) > MIN_PATH_AREA)
       return {bounds, paths}
     })
   }
@@ -123,18 +176,25 @@ export default class MapGraphic extends Graphic {
   render(ctx) {
     this._stateFeatures.features.forEach(feature => {
       ctx.beginPath()
-      const hasMultiplePaths = feature.geometry.coordinates.length > 1
-      feature.geometry.coordinates.forEach(path => {
-        const points = hasMultiplePaths ? path[0] : path
-        ctx.moveTo(points[0][0], points[0][1])
-        for (let index = 1; index < points.length; index++) {
-          ctx.lineTo(points[index][0], points[index][1])
-        }
-      })
-      ctx.closePath()
+      const {type, coordinates} = feature.geometry
+      if (type === 'MultiPolygon') {
+        coordinates.forEach(polygon => {
+          polygon.forEach(ring => {
+            ctx.moveTo(ring[0][0], ring[0][1])
+            for (let i = 1; i < ring.length; i++) ctx.lineTo(ring[i][0], ring[i][1])
+            ctx.closePath()
+          })
+        })
+      } else {
+        coordinates.forEach(ring => {
+          ctx.moveTo(ring[0][0], ring[0][1])
+          for (let i = 1; i < ring.length; i++) ctx.lineTo(ring[i][0], ring[i][1])
+          ctx.closePath()
+        })
+      }
       ctx.fillStyle = fipsColor(feature.id)
       ctx.globalAlpha = 0.35
-      ctx.fill()
+      ctx.fill('evenodd')
       ctx.globalAlpha = 1.0
     })
   }
@@ -148,29 +208,24 @@ export default class MapGraphic extends Graphic {
       return null
     }
 
-    // for each feature: check if point is within bounds, then within path
+    // for each feature: check bounds, then outer ring, then exclude holes
     return this._stateFeatures.features.find((feature, featureIndex) => {
       const bounds = this._projectedStates[featureIndex].bounds
       if (!checkWithinBounds(pointDimensions, bounds || this._generalBounds)) {
         return false
       }
-      const matchingPath = this._projectedStates[featureIndex].paths.find(
-        path => inside(pointDimensions, path[0])
+      return this._projectedStates[featureIndex].paths.some(({outer, holes}) =>
+        inside(pointDimensions, outer) &&
+        !holes.some(hole => inside(pointDimensions, hole))
       )
-      return matchingPath != null
     })
   }
 
   computeCartogramArea() {
-    const featureAreas = this._stateFeatures.features.map((feature) => {
-      const featureArea = geoPath().area(feature)
-      if (isNaN(featureArea)) {
-        // eslint-disable-next-line no-debugger, no-restricted-syntax
-        debugger
-      }
-      return featureArea
-    })
-
-    return featureAreas.reduce((a, b) => a + b)
+    const path = geoPath()
+    return this._stateFeatures.features.reduce((sum, feature) => {
+      const a = path.area(feature)
+      return isNaN(a) ? sum : sum + a
+    }, 0)
   }
 }

@@ -1,183 +1,109 @@
-import {geoAlbersUsa, geoMercator} from 'd3-geo'
+import {geoAlbersUsa, geoMercator, geoConicConformal} from 'd3-geo'
 
-import usTopoJson from '../../maps/us/us-110m.topo.json'
-// import ukConstituencyTopoJson from '../../maps/uk/constituency.topo.json'
-// import ukAuthorityTopoJson from '../../maps/uk/local-authority.topo.json'
-import germanyConstituencyTopoJson from '../../maps/germany/constituency.topo.json'
-import franceRegionTopoJson from '../../maps/france/region.topo.json'
-import franceDepartmentTopoJson from '../../maps/france/department.topo.json'
-import netherlandsTopoJson from '../../maps/netherlands/netherlands.topo.json'
-import brazilTopoJson from '../../maps/brazil/brazil.topo.json'
-import irelandTopoJson from '../../maps/ireland/Irish_Constituencies.topo.json'
-import ukRegionsTopojson from '../../maps/uk/uk_countries_and_england_regions.topo.json'
-import indiaTopojson from '../../maps/india/india.topo.json'
-
+import geographies from '../geographies'
 import MapResource from './MapResource'
-import fipsHash from '../../data/us/fips-to-state.json'
-// import fidHash from '../../data/uk/fid-to-constituency.json'
-// import authorityIdHash from '../../data/uk/id-to-authority.json'
-import wkrHash from '../../data/germany/wkr-to-name.json'
-import regionHash from '../../data/france/region-to-name.json'
-import departmentHash from '../../data/france/department-to-name.json'
-import netherlandsHash from '../../data/netherlands/netherlands-names.json'
-import brazilHash from '../../data/brazil/brazil-names.json'
-import irelandHash from '../../data/ireland/constituency_names.json'
-import ukRegionsHash from '../../data/uk/uk_region_names.json';
-import indiaHash from '../../data/india/india_names.json';
 
-const usProjection = (canvasDimensions) => {
-  return geoAlbersUsa()
-    .scale(canvasDimensions.width)
-    .translate([
-      canvasDimensions.width * 0.5,
-      canvasDimensions.height * 0.5,
-    ])
+const projectionCache = {} // keyed by "${label}-${width}x${height}"
+
+/**
+ * Compute geographic bounding box [minX, minY, maxX, maxY] directly from
+ * TopoJSON arcs — no topojson library needed. Used to auto-fit projections.
+ * TopoJSON with a transform stores delta-encoded quantized coordinates;
+ * without a transform, arc coordinates are already in geographic space.
+ */
+function topoJsonBbox(topo) {
+  if (topo.bbox) return topo.bbox
+  const s = topo.transform ? topo.transform.scale : null
+  const t = topo.transform ? topo.transform.translate : null
+  let minX = Infinity
+  let minY = Infinity
+  let maxX = -Infinity
+  let maxY = -Infinity
+  topo.arcs.forEach(arc => {
+    let px = 0
+    let py = 0
+    arc.forEach(point => {
+      let gx
+      let gy
+      if (s) {
+        px += point[0]
+        py += point[1]
+        gx = (px * s[0]) + t[0]
+        gy = (py * s[1]) + t[1]
+      } else {
+        gx = point[0]
+        gy = point[1]
+      }
+      if (gx < minX) minX = gx
+      if (gy < minY) minY = gy
+      if (gx > maxX) maxX = gx
+      if (gy > maxY) maxY = gy
+    })
+  })
+  return [minX, minY, maxX, maxY]
 }
 
-const ukProjection = (canvasDimensions) => {
-  return geoMercator()
-    .center([-2, 55.7])
-    .scale(canvasDimensions.height * 2.9)
-    .translate([
-      canvasDimensions.width * 0.5,
-      canvasDimensions.height * 0.5,
-    ])
-}
+function buildProjection(geo, canvasDimensions) {
+  const cacheKey = `${geo.label}-${canvasDimensions.width}-${canvasDimensions.height}`
+  const cached = !!projectionCache[cacheKey]
+  const dims = `${canvasDimensions.width}x${canvasDimensions.height}`
+  // eslint-disable-next-line no-console
+  console.info(`[proj] ${geo.label} canvas=${dims} cached=${cached}`)
+  if (projectionCache[cacheKey]) return projectionCache[cacheKey]
 
-const germanyProjection = (canvasDimensions) => {
-  return geoMercator()
-    .center([11, 51.2])
-    .scale(canvasDimensions.height * 3.9)
-    .translate([
-      canvasDimensions.width * 0.5,
-      canvasDimensions.height * 0.5,
-    ])
-}
+  const opts = geo.projectionOptions || {}
+  let proj
 
-const franceProjection = (canvasDimensions) => {
-  return geoMercator()
-    .center([3.4, 46.3])
-    .scale(canvasDimensions.height * 3.4)
-    .translate([
-      canvasDimensions.width * 0.5,
-      canvasDimensions.height * 0.5,
-    ])
-}
+  if (geo.projection === 'albersUsa') {
+    proj = geoAlbersUsa()
+  } else if (geo.projection === 'conicConformal') {
+    proj = geoConicConformal()
+    if (opts.parallels) proj = proj.parallels(opts.parallels)
+    if (opts.rotate) proj = proj.rotate(opts.rotate)
+  } else {
+    proj = geoMercator()
+  }
 
-const netherlandsProjection = (canvasDimensions) => {
-  return geoMercator()
-    .center([5.668945, 52.112198])
-    .scale(canvasDimensions.height * 11)
-    .translate([
-      canvasDimensions.width * 0.5,
-      canvasDimensions.height * 0.5,
-    ])
-}
+  const [x0, y0, x1, y1] = topoJsonBbox(geo.topoJson)
+  // eslint-disable-next-line no-console
+  const bbox = [x0, y0, x1, y1].map(v => v.toFixed(3)).join(', ')
+  // eslint-disable-next-line no-console
+  console.info(`[proj] ${geo.label} bbox=[${bbox}]`)
+  const bboxFeature = {
+    type: 'Feature',
+    geometry: {
+      type: 'MultiPoint',
+      coordinates: [[x0, y0], [x1, y0], [x1, y1], [x0, y1]],
+    },
+  }
+  const marginX = canvasDimensions.width * 0.10
+  const marginY = canvasDimensions.height * 0.10
+  proj.fitExtent(
+    [[marginX, marginY], [canvasDimensions.width - marginX, canvasDimensions.height - marginY]],
+    bboxFeature
+  )
+  // eslint-disable-next-line no-console
+  const tr = proj.translate().map(v => v.toFixed(1)).join(', ')
+  // eslint-disable-next-line no-console
+  console.info(`[proj] ${geo.label} scale=${proj.scale().toFixed(1)} translate=[${tr}]`)
 
-const brazilProjection = (canvasDimensions) => {
-  return geoMercator()
-    .center([-50, -15])
-    .scale(canvasDimensions.height)
-    .translate([
-      canvasDimensions.width * 0.5,
-      canvasDimensions.height * 0.5,
-    ])
-}
-
-const irelandProjection = (canvasDimensions) => {
-  return geoMercator()
-    .center([-7, 53.0])
-    .scale(canvasDimensions.height * 5.9)
-    .translate([
-      canvasDimensions.width * 0.5,
-      canvasDimensions.height * 0.5,
-    ])
-}
-
-const indiaProjection = (canvasDimensions) => {
-  return geoMercator()
-    .center([80.310, 22.371])
-    .scale(canvasDimensions.height * 1.5)
-    .translate([
-      canvasDimensions.width * 0.5,
-      canvasDimensions.height * 0.5,
-    ])
+  projectionCache[cacheKey] = proj
+  return proj
 }
 
 class GeographyResource {
   constructor() {
-    this._geographies = [
-      {
-        label: 'United States',
-        mapResource: new MapResource(usTopoJson, 'states'),
-        geoCodeToName: fipsHash,
-        projection: usProjection,
-      },
-      // {
-      //   label: 'United Kingdom - Constituencies',
-      //   mapResource: new MapResource(ukConstituencyTopoJson, 'constituencies'),
-      //   geoCodeToName: fidHash,
-      //   projection: ukProjection,
-      // },
-      // {
-      //   label: 'United Kingdom - Local Authorities',
-      //   mapResource: new MapResource(ukAuthorityTopoJson, 'authorities'),
-      //   geoCodeToName: authorityIdHash,
-      //   projection: ukProjection,
-      // },
-      {
-        label: 'United Kingdom - Regions',
-        mapResource: new MapResource(ukRegionsTopojson, 'uk_countries_and_england_regions'),
-        geoCodeToName: ukRegionsHash,
-        projection: ukProjection,
-      },
-      {
-        label: 'Germany - Constituencies',
-        mapResource: new MapResource(germanyConstituencyTopoJson, 'constituencies'),
-        geoCodeToName: wkrHash,
-        projection: germanyProjection,
-      },
-      {
-        label: 'France - Regions',
-        mapResource: new MapResource(franceRegionTopoJson, 'regions'),
-        geoCodeToName: regionHash,
-        projection: franceProjection,
-      },
-      {
-        label: 'France - Departments',
-        mapResource: new MapResource(franceDepartmentTopoJson, 'departments'),
-        geoCodeToName: departmentHash,
-        projection: franceProjection,
-      },
-      {
-        label: 'Netherlands',
-        mapResource: new MapResource(netherlandsTopoJson, 'dutch municipalities'),
-        geoCodeToName: netherlandsHash,
-        projection: netherlandsProjection,
-      },
-      {
-        label: 'Brazil',
-        mapResource: new MapResource(brazilTopoJson, 'estados'),
-        geoCodeToName: brazilHash,
-        projection: brazilProjection,
-      },
-      {
-        label: 'Ireland',
-        mapResource: new MapResource(irelandTopoJson, 'Irish_Constituencies'),
-        geoCodeToName: irelandHash,
-        projection: irelandProjection,
-      },
-      {
-        label: 'India',
-        mapResource: new MapResource(indiaTopojson, 'india'),
-        geoCodeToName: indiaHash,
-        projection: indiaProjection,
-      },
-    ]
+    this._geographies = geographies.map(geo => ({
+      label: geo.label,
+      group: geo.group,
+      mapResource: new MapResource(geo.topoJson, geo.objectId),
+      geoCodeToName: geo.nameHash,
+      _config: geo,
+    }))
   }
 
   getMapResource(label) {
-    return this._geographies.find(geography => geography.label === label).mapResource
+    return this._geographies.find(g => g.label === label).mapResource
   }
 
   getGeographies() {
@@ -185,14 +111,14 @@ class GeographyResource {
   }
 
   getGeoCodeHash(label) {
-    return this._geographies.find(geography => geography.label === label).geoCodeToName
+    return this._geographies.find(g => g.label === label).geoCodeToName
   }
 
   getProjection(label, canvasDimensions) {
-    const nullProjection = d => d
-    if (!label) { return nullProjection }
-    const projectionFn = this._geographies.find(geography => geography.label === label).projection
-    return projectionFn(canvasDimensions)
+    if (!label) return d => d
+    const geo = geographies.find(g => g.label === label)
+    if (!geo) return d => d
+    return buildProjection(geo, canvasDimensions)
   }
 }
 

@@ -259,6 +259,11 @@ code {
       margin-left: 15px;
       margin-bottom: $ui-margin / 2;
     }
+    .save-hint {
+      margin-top: 0;
+      opacity: 0.55;
+      font-size: 0.9em;
+    }
     a.export {
       display: block;
       background-color: #1a1a1a;
@@ -313,6 +318,26 @@ code {
 .metrics.hide-null {
   .metrics-box.fade, .metrics-box.disabled {
     display: none;
+  }
+}
+
+.resume-saved {
+  display: flex;
+  align-items: center;
+  padding: 8px $ui-margin;
+  background-color: $very-light-gray;
+  border-left: 3px solid $gray;
+  font-size: 0.9em;
+  span {
+    flex: 1;
+  }
+  a {
+    cursor: pointer;
+    padding-left: 10px;
+    font-weight: 500;
+    &:hover {
+      opacity: 0.6;
+    }
   }
 }
 

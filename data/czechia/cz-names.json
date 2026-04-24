@@ -1,0 +1,45 @@
+{
+  "C19": {
+    "name": "Praha"
+  },
+  "C27": {
+    "name": "Středočeský kraj"
+  },
+  "C35": {
+    "name": "Jihočeský kraj"
+  },
+  "C43": {
+    "name": "Plzeňský kraj"
+  },
+  "C51": {
+    "name": "Karlovarský kraj"
+  },
+  "C60": {
+    "name": "Ústecký kraj"
+  },
+  "C78": {
+    "name": "Liberecký kraj"
+  },
+  "C86": {
+    "name": "Královéhradecký kraj"
+  },
+  "C94": {
+    "name": "Pardubický kraj"
+  },
+  "C108": {
+    "name": "Kraj Vysočina"
+  },
+  "C116": {
+    "name": "Jihomoravský kraj"
+  },
+  "C124": {
+    "name": "Olomoucký kraj"
+  },
+  "C132": {
+    "name": "Moravskoslezský kraj"
+  },
+  "C141": {
+    "name": "Zlínský kraj"
+  }
+}
+

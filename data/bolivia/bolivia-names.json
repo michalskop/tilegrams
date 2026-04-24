@@ -1,0 +1,29 @@
+{
+  "BOL": {
+    "name": "La Paz"
+  },
+  "BOO": {
+    "name": "Oruro"
+  },
+  "BOP": {
+    "name": "Potosi"
+  },
+  "BOT": {
+    "name": "Tarija"
+  },
+  "BOS": {
+    "name": "Santa Cruz"
+  },
+  "BOH": {
+    "name": "Chuquisaca"
+  },
+  "BON": {
+    "name": "Pando"
+  },
+  "BOB": {
+    "name": "El Beni"
+  },
+  "BOC": {
+    "name": "Cochabamba"
+  }
+}

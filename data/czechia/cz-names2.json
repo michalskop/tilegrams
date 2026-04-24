@@ -1,0 +1,42 @@
+{
+  "ST": {
+    "name": "Středočeský kraj"
+  },
+  "JC": {
+    "name": "Jihočeský kraj"
+  },
+  "PL": {
+    "name": "Plzeňský kraj"
+  },
+  "KA": {
+    "name": "Karlovarský kraj"
+  },
+  "US": {
+    "name": "Ústecký kraj"
+  },
+  "LI": {
+    "name": "Liberecký kraj"
+  },
+  "KR": {
+    "name": "Královéhradecký kraj"
+  },
+  "PA": {
+    "name": "Pardubický kraj"
+  },
+  "VY": {
+    "name": "Kraj Vysočina"
+  },
+  "JM": {
+    "name": "Jihomoravský kraj"
+  },
+  "OL": {
+    "name": "Olomoucký kraj"
+  },
+  "MO": {
+    "name": "Moravskoslezský kraj"
+  },
+  "ZL": {
+    "name": "Zlínský kraj"
+  }
+}
+

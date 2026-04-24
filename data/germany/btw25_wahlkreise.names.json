@@ -1,0 +1,900 @@
+{
+  "1": {
+    "name": "Flensburg – Schleswig / Schleswig-Holstein"
+  },
+  "2": {
+    "name": "Nordfriesland – Dithmarschen Nord / Schleswig-Holstein"
+  },
+  "3": {
+    "name": "Steinburg – Dithmarschen Süd / Schleswig-Holstein"
+  },
+  "4": {
+    "name": "Rendsburg-Eckernförde / Schleswig-Holstein"
+  },
+  "5": {
+    "name": "Kiel / Schleswig-Holstein"
+  },
+  "6": {
+    "name": "Plön – Neumünster / Schleswig-Holstein"
+  },
+  "7": {
+    "name": "Pinneberg / Schleswig-Holstein"
+  },
+  "8": {
+    "name": "Segeberg – Stormarn-Mitte / Schleswig-Holstein"
+  },
+  "9": {
+    "name": "Ostholstein – Stormarn-Nord / Schleswig-Holstein"
+  },
+  "10": {
+    "name": "Herzogtum Lauenburg – Stormarn-Süd / Schleswig-Holstein"
+  },
+  "11": {
+    "name": "Lübeck / Schleswig-Holstein"
+  },
+  "12": {
+    "name": "Schwerin – Ludwigslust-Parchim I – Nordwestmecklenburg I / Mecklenburg-Vorpommern"
+  },
+  "13": {
+    "name": "Ludwigslust-Parchim II – Nordwestmecklenburg II – Landkreis Rostock I / Mecklenburg-Vorpommern"
+  },
+  "14": {
+    "name": "Rostock – Landkreis Rostock II / Mecklenburg-Vorpommern"
+  },
+  "15": {
+    "name": "Vorpommern-Rügen – Vorpommern-Greifswald I / Mecklenburg-Vorpommern"
+  },
+  "16": {
+    "name": "Mecklenburgische Seenplatte I – Vorpommern-Greifswald II / Mecklenburg-Vorpommern"
+  },
+  "17": {
+    "name": "Mecklenburgische Seenplatte II – Landkreis Rostock III / Mecklenburg-Vorpommern"
+  },
+  "18": {
+    "name": "Hamburg-Mitte / Hamburg"
+  },
+  "19": {
+    "name": "Hamburg-Altona / Hamburg"
+  },
+  "20": {
+    "name": "Hamburg-Eimsbüttel / Hamburg"
+  },
+  "21": {
+    "name": "Hamburg-Nord / Hamburg"
+  },
+  "22": {
+    "name": "Hamburg-Wandsbek / Hamburg"
+  },
+  "23": {
+    "name": "Hamburg-Bergedorf – Harburg / Hamburg"
+  },
+  "24": {
+    "name": "Aurich – Emden / Niedersachsen"
+  },
+  "25": {
+    "name": "Unterems / Niedersachsen"
+  },
+  "26": {
+    "name": "Friesland – Wilhelmshaven – Wittmund / Niedersachsen"
+  },
+  "27": {
+    "name": "Oldenburg – Ammerland / Niedersachsen"
+  },
+  "28": {
+    "name": "Delmenhorst – Wesermarsch – Oldenburg-Land / Niedersachsen"
+  },
+  "29": {
+    "name": "Cuxhaven – Stade II / Niedersachsen"
+  },
+  "30": {
+    "name": "Stade I – Rotenburg II / Niedersachsen"
+  },
+  "31": {
+    "name": "Mittelems / Niedersachsen"
+  },
+  "32": {
+    "name": "Cloppenburg – Vechta / Niedersachsen"
+  },
+  "33": {
+    "name": "Diepholz – Nienburg I / Niedersachsen"
+  },
+  "34": {
+    "name": "Osterholz – Verden / Niedersachsen"
+  },
+  "35": {
+    "name": "Rotenburg I – Heidekreis / Niedersachsen"
+  },
+  "36": {
+    "name": "Harburg / Niedersachsen"
+  },
+  "37": {
+    "name": "Lüchow-Dannenberg – Lüneburg / Niedersachsen"
+  },
+  "38": {
+    "name": "Osnabrück-Land / Niedersachsen"
+  },
+  "39": {
+    "name": "Stadt Osnabrück / Niedersachsen"
+  },
+  "40": {
+    "name": "Nienburg II – Schaumburg / Niedersachsen"
+  },
+  "41": {
+    "name": "Stadt Hannover I / Niedersachsen"
+  },
+  "42": {
+    "name": "Stadt Hannover II / Niedersachsen"
+  },
+  "43": {
+    "name": "Hannover-Land I / Niedersachsen"
+  },
+  "44": {
+    "name": "Celle – Uelzen / Niedersachsen"
+  },
+  "45": {
+    "name": "Gifhorn – Peine / Niedersachsen"
+  },
+  "46": {
+    "name": "Hameln-Pyrmont – Holzminden / Niedersachsen"
+  },
+  "47": {
+    "name": "Hannover-Land II / Niedersachsen"
+  },
+  "48": {
+    "name": "Hildesheim / Niedersachsen"
+  },
+  "49": {
+    "name": "Salzgitter – Wolfenbüttel / Niedersachsen"
+  },
+  "50": {
+    "name": "Braunschweig / Niedersachsen"
+  },
+  "51": {
+    "name": "Helmstedt – Wolfsburg / Niedersachsen"
+  },
+  "52": {
+    "name": "Goslar – Northeim – Göttingen II / Niedersachsen"
+  },
+  "53": {
+    "name": "Göttingen I / Niedersachsen"
+  },
+  "54": {
+    "name": "Bremen I / Bremen"
+  },
+  "55": {
+    "name": "Bremen II – Bremerhaven / Bremen"
+  },
+  "56": {
+    "name": "Prignitz – Ostprignitz-Ruppin – Havelland I / Brandenburg"
+  },
+  "57": {
+    "name": "Uckermark – Barnim I / Brandenburg"
+  },
+  "58": {
+    "name": "Oberhavel – Havelland II / Brandenburg"
+  },
+  "59": {
+    "name": "Märkisch-Oderland – Barnim II / Brandenburg"
+  },
+  "60": {
+    "name": "Brandenburg an der Havel – Potsdam-Mittelmark I – Havelland III – Teltow-Fläming I / Brandenburg"
+  },
+  "61": {
+    "name": "Potsdam – Potsdam-Mittelmark II – Teltow-Fläming II / Brandenburg"
+  },
+  "62": {
+    "name": "Dahme-Spreewald – Teltow-Fläming III / Brandenburg"
+  },
+  "63": {
+    "name": "Frankfurt (Oder) – Oder-Spree / Brandenburg"
+  },
+  "64": {
+    "name": "Cottbus – Spree-Neiße / Brandenburg"
+  },
+  "65": {
+    "name": "Elbe-Elster – Oberspreewald-Lausitz / Brandenburg"
+  },
+  "66": {
+    "name": "Altmark – Jerichower Land / Sachsen-Anhalt"
+  },
+  "67": {
+    "name": "Börde – Salzlandkreis / Sachsen-Anhalt"
+  },
+  "68": {
+    "name": "Harz / Sachsen-Anhalt"
+  },
+  "69": {
+    "name": "Magdeburg / Sachsen-Anhalt"
+  },
+  "70": {
+    "name": "Anhalt – Dessau – Wittenberg / Sachsen-Anhalt"
+  },
+  "71": {
+    "name": "Halle / Sachsen-Anhalt"
+  },
+  "72": {
+    "name": "Burgenland – Saalekreis / Sachsen-Anhalt"
+  },
+  "73": {
+    "name": "Mansfeld / Sachsen-Anhalt"
+  },
+  "74": {
+    "name": "Berlin-Mitte / Berlin"
+  },
+  "75": {
+    "name": "Berlin-Pankow / Berlin"
+  },
+  "76": {
+    "name": "Berlin-Reinickendorf / Berlin"
+  },
+  "77": {
+    "name": "Berlin-Spandau – Charlottenburg Nord / Berlin"
+  },
+  "78": {
+    "name": "Berlin-Steglitz-Zehlendorf / Berlin"
+  },
+  "79": {
+    "name": "Berlin-Charlottenburg-Wilmersdorf / Berlin"
+  },
+  "80": {
+    "name": "Berlin-Tempelhof-Schöneberg / Berlin"
+  },
+  "81": {
+    "name": "Berlin-Neukölln / Berlin"
+  },
+  "82": {
+    "name": "Berlin-Friedrichshain-Kreuzberg – Prenzlauer Berg Ost / Berlin"
+  },
+  "83": {
+    "name": "Berlin-Treptow-Köpenick / Berlin"
+  },
+  "84": {
+    "name": "Berlin-Marzahn-Hellersdorf / Berlin"
+  },
+  "85": {
+    "name": "Berlin-Lichtenberg / Berlin"
+  },
+  "86": {
+    "name": "Aachen I / Nordrhein-Westfalen"
+  },
+  "87": {
+    "name": "Aachen II / Nordrhein-Westfalen"
+  },
+  "88": {
+    "name": "Heinsberg / Nordrhein-Westfalen"
+  },
+  "89": {
+    "name": "Düren / Nordrhein-Westfalen"
+  },
+  "90": {
+    "name": "Rhein-Erft-Kreis I / Nordrhein-Westfalen"
+  },
+  "91": {
+    "name": "Euskirchen – Rhein-Erft-Kreis II / Nordrhein-Westfalen"
+  },
+  "92": {
+    "name": "Köln I / Nordrhein-Westfalen"
+  },
+  "93": {
+    "name": "Köln II / Nordrhein-Westfalen"
+  },
+  "94": {
+    "name": "Köln III / Nordrhein-Westfalen"
+  },
+  "95": {
+    "name": "Bonn / Nordrhein-Westfalen"
+  },
+  "96": {
+    "name": "Rhein-Sieg-Kreis I / Nordrhein-Westfalen"
+  },
+  "97": {
+    "name": "Rhein-Sieg-Kreis II / Nordrhein-Westfalen"
+  },
+  "98": {
+    "name": "Oberbergischer Kreis / Nordrhein-Westfalen"
+  },
+  "99": {
+    "name": "Rheinisch-Bergischer Kreis / Nordrhein-Westfalen"
+  },
+  "100": {
+    "name": "Leverkusen – Köln IV / Nordrhein-Westfalen"
+  },
+  "101": {
+    "name": "Wuppertal I / Nordrhein-Westfalen"
+  },
+  "102": {
+    "name": "Solingen – Remscheid – Wuppertal II / Nordrhein-Westfalen"
+  },
+  "103": {
+    "name": "Mettmann I / Nordrhein-Westfalen"
+  },
+  "104": {
+    "name": "Mettmann II / Nordrhein-Westfalen"
+  },
+  "105": {
+    "name": "Düsseldorf I / Nordrhein-Westfalen"
+  },
+  "106": {
+    "name": "Düsseldorf II / Nordrhein-Westfalen"
+  },
+  "107": {
+    "name": "Neuss I / Nordrhein-Westfalen"
+  },
+  "108": {
+    "name": "Mönchengladbach / Nordrhein-Westfalen"
+  },
+  "109": {
+    "name": "Krefeld I – Neuss II / Nordrhein-Westfalen"
+  },
+  "110": {
+    "name": "Viersen / Nordrhein-Westfalen"
+  },
+  "111": {
+    "name": "Kleve / Nordrhein-Westfalen"
+  },
+  "112": {
+    "name": "Wesel I / Nordrhein-Westfalen"
+  },
+  "113": {
+    "name": "Krefeld II – Wesel II / Nordrhein-Westfalen"
+  },
+  "114": {
+    "name": "Duisburg I / Nordrhein-Westfalen"
+  },
+  "115": {
+    "name": "Duisburg II / Nordrhein-Westfalen"
+  },
+  "116": {
+    "name": "Oberhausen – Wesel III / Nordrhein-Westfalen"
+  },
+  "117": {
+    "name": "Mülheim – Essen I / Nordrhein-Westfalen"
+  },
+  "118": {
+    "name": "Essen II / Nordrhein-Westfalen"
+  },
+  "119": {
+    "name": "Essen III / Nordrhein-Westfalen"
+  },
+  "120": {
+    "name": "Recklinghausen I / Nordrhein-Westfalen"
+  },
+  "121": {
+    "name": "Recklinghausen II / Nordrhein-Westfalen"
+  },
+  "122": {
+    "name": "Gelsenkirchen / Nordrhein-Westfalen"
+  },
+  "123": {
+    "name": "Steinfurt I – Borken I / Nordrhein-Westfalen"
+  },
+  "124": {
+    "name": "Bottrop – Recklinghausen III / Nordrhein-Westfalen"
+  },
+  "125": {
+    "name": "Borken II / Nordrhein-Westfalen"
+  },
+  "126": {
+    "name": "Coesfeld – Steinfurt II / Nordrhein-Westfalen"
+  },
+  "127": {
+    "name": "Steinfurt III / Nordrhein-Westfalen"
+  },
+  "128": {
+    "name": "Münster / Nordrhein-Westfalen"
+  },
+  "129": {
+    "name": "Warendorf / Nordrhein-Westfalen"
+  },
+  "130": {
+    "name": "Gütersloh I / Nordrhein-Westfalen"
+  },
+  "131": {
+    "name": "Bielefeld – Gütersloh II / Nordrhein-Westfalen"
+  },
+  "132": {
+    "name": "Herford – Minden-Lübbecke II / Nordrhein-Westfalen"
+  },
+  "133": {
+    "name": "Minden-Lübbecke I / Nordrhein-Westfalen"
+  },
+  "134": {
+    "name": "Lippe I / Nordrhein-Westfalen"
+  },
+  "135": {
+    "name": "Höxter – Gütersloh III – Lippe II / Nordrhein-Westfalen"
+  },
+  "136": {
+    "name": "Paderborn / Nordrhein-Westfalen"
+  },
+  "137": {
+    "name": "Hagen – Ennepe-Ruhr-Kreis I / Nordrhein-Westfalen"
+  },
+  "138": {
+    "name": "Ennepe-Ruhr-Kreis II / Nordrhein-Westfalen"
+  },
+  "139": {
+    "name": "Bochum I / Nordrhein-Westfalen"
+  },
+  "140": {
+    "name": "Herne – Bochum II / Nordrhein-Westfalen"
+  },
+  "141": {
+    "name": "Dortmund I / Nordrhein-Westfalen"
+  },
+  "142": {
+    "name": "Dortmund II / Nordrhein-Westfalen"
+  },
+  "143": {
+    "name": "Unna I / Nordrhein-Westfalen"
+  },
+  "144": {
+    "name": "Hamm – Unna II / Nordrhein-Westfalen"
+  },
+  "145": {
+    "name": "Soest / Nordrhein-Westfalen"
+  },
+  "146": {
+    "name": "Hochsauerlandkreis / Nordrhein-Westfalen"
+  },
+  "147": {
+    "name": "Siegen-Wittgenstein / Nordrhein-Westfalen"
+  },
+  "148": {
+    "name": "Olpe – Märkischer Kreis I / Nordrhein-Westfalen"
+  },
+  "149": {
+    "name": "Märkischer Kreis II / Nordrhein-Westfalen"
+  },
+  "150": {
+    "name": "Nordsachsen / Sachsen"
+  },
+  "151": {
+    "name": "Leipzig I / Sachsen"
+  },
+  "152": {
+    "name": "Leipzig II / Sachsen"
+  },
+  "153": {
+    "name": "Leipzig-Land / Sachsen"
+  },
+  "154": {
+    "name": "Meißen / Sachsen"
+  },
+  "155": {
+    "name": "Bautzen I / Sachsen"
+  },
+  "156": {
+    "name": "Görlitz / Sachsen"
+  },
+  "157": {
+    "name": "Sächsische Schweiz-Osterzgebirge / Sachsen"
+  },
+  "158": {
+    "name": "Dresden I / Sachsen"
+  },
+  "159": {
+    "name": "Dresden II – Bautzen II / Sachsen"
+  },
+  "160": {
+    "name": "Mittelsachsen / Sachsen"
+  },
+  "161": {
+    "name": "Chemnitz / Sachsen"
+  },
+  "162": {
+    "name": "Chemnitzer Umland – Erzgebirgskreis II / Sachsen"
+  },
+  "163": {
+    "name": "Erzgebirgskreis I / Sachsen"
+  },
+  "164": {
+    "name": "Zwickau / Sachsen"
+  },
+  "165": {
+    "name": "Vogtlandkreis / Sachsen"
+  },
+  "166": {
+    "name": "Waldeck / Hessen"
+  },
+  "167": {
+    "name": "Kassel / Hessen"
+  },
+  "168": {
+    "name": "Werra-Meißner – Hersfeld-Rotenburg / Hessen"
+  },
+  "169": {
+    "name": "Schwalm-Eder / Hessen"
+  },
+  "170": {
+    "name": "Marburg / Hessen"
+  },
+  "171": {
+    "name": "Lahn-Dill / Hessen"
+  },
+  "172": {
+    "name": "Gießen / Hessen"
+  },
+  "173": {
+    "name": "Fulda / Hessen"
+  },
+  "174": {
+    "name": "Main-Kinzig – Wetterau II – Schotten / Hessen"
+  },
+  "175": {
+    "name": "Hochtaunus / Hessen"
+  },
+  "176": {
+    "name": "Wetterau I / Hessen"
+  },
+  "177": {
+    "name": "Rheingau-Taunus – Limburg / Hessen"
+  },
+  "178": {
+    "name": "Wiesbaden / Hessen"
+  },
+  "179": {
+    "name": "Hanau / Hessen"
+  },
+  "180": {
+    "name": "Main-Taunus / Hessen"
+  },
+  "181": {
+    "name": "Frankfurt am Main I / Hessen"
+  },
+  "182": {
+    "name": "Frankfurt am Main II / Hessen"
+  },
+  "183": {
+    "name": "Groß-Gerau / Hessen"
+  },
+  "184": {
+    "name": "Offenbach / Hessen"
+  },
+  "185": {
+    "name": "Darmstadt / Hessen"
+  },
+  "186": {
+    "name": "Odenwald / Hessen"
+  },
+  "187": {
+    "name": "Bergstraße / Hessen"
+  },
+  "188": {
+    "name": "Eichsfeld – Nordhausen – Kyffhäuserkreis / Thüringen"
+  },
+  "189": {
+    "name": "Eisenach – Wartburgkreis – Unstrut-Hainich-Kreis / Thüringen"
+  },
+  "190": {
+    "name": "Jena – Sömmerda – Weimarer Land I / Thüringen"
+  },
+  "191": {
+    "name": "Gotha – Ilm-Kreis / Thüringen"
+  },
+  "192": {
+    "name": "Erfurt – Weimar – Weimarer Land II / Thüringen"
+  },
+  "193": {
+    "name": "Gera – Greiz – Altenburger Land / Thüringen"
+  },
+  "194": {
+    "name": "Saalfeld-Rudolstadt – Saale-Holzland-Kreis – Saale-Orla-Kreis / Thüringen"
+  },
+  "195": {
+    "name": "Suhl – Schmalkalden-Meiningen – Hildburghausen – Sonneberg / Thüringen"
+  },
+  "196": {
+    "name": "Neuwied / Rheinland-Pfalz"
+  },
+  "197": {
+    "name": "Ahrweiler / Rheinland-Pfalz"
+  },
+  "198": {
+    "name": "Koblenz / Rheinland-Pfalz"
+  },
+  "199": {
+    "name": "Mosel/Rhein-Hunsrück / Rheinland-Pfalz"
+  },
+  "200": {
+    "name": "Kreuznach / Rheinland-Pfalz"
+  },
+  "201": {
+    "name": "Bitburg / Rheinland-Pfalz"
+  },
+  "202": {
+    "name": "Trier / Rheinland-Pfalz"
+  },
+  "203": {
+    "name": "Montabaur / Rheinland-Pfalz"
+  },
+  "204": {
+    "name": "Mainz / Rheinland-Pfalz"
+  },
+  "205": {
+    "name": "Worms / Rheinland-Pfalz"
+  },
+  "206": {
+    "name": "Ludwigshafen/Frankenthal / Rheinland-Pfalz"
+  },
+  "207": {
+    "name": "Neustadt – Speyer / Rheinland-Pfalz"
+  },
+  "208": {
+    "name": "Kaiserslautern / Rheinland-Pfalz"
+  },
+  "209": {
+    "name": "Pirmasens / Rheinland-Pfalz"
+  },
+  "210": {
+    "name": "Südpfalz / Rheinland-Pfalz"
+  },
+  "211": {
+    "name": "Altötting / Bayern"
+  },
+  "212": {
+    "name": "Erding – Ebersberg / Bayern"
+  },
+  "213": {
+    "name": "Freising / Bayern"
+  },
+  "214": {
+    "name": "Fürstenfeldbruck / Bayern"
+  },
+  "215": {
+    "name": "Ingolstadt / Bayern"
+  },
+  "216": {
+    "name": "München-Nord / Bayern"
+  },
+  "217": {
+    "name": "München-Ost / Bayern"
+  },
+  "218": {
+    "name": "München-Süd / Bayern"
+  },
+  "219": {
+    "name": "München-West/Mitte / Bayern"
+  },
+  "220": {
+    "name": "München-Land / Bayern"
+  },
+  "221": {
+    "name": "Rosenheim / Bayern"
+  },
+  "222": {
+    "name": "Bad Tölz-Wolfratshausen – Miesbach / Bayern"
+  },
+  "223": {
+    "name": "Starnberg – Landsberg am Lech / Bayern"
+  },
+  "224": {
+    "name": "Traunstein / Bayern"
+  },
+  "225": {
+    "name": "Weilheim / Bayern"
+  },
+  "226": {
+    "name": "Deggendorf / Bayern"
+  },
+  "227": {
+    "name": "Landshut / Bayern"
+  },
+  "228": {
+    "name": "Passau / Bayern"
+  },
+  "229": {
+    "name": "Rottal-Inn / Bayern"
+  },
+  "230": {
+    "name": "Straubing / Bayern"
+  },
+  "231": {
+    "name": "Amberg / Bayern"
+  },
+  "232": {
+    "name": "Regensburg / Bayern"
+  },
+  "233": {
+    "name": "Schwandorf / Bayern"
+  },
+  "234": {
+    "name": "Weiden / Bayern"
+  },
+  "235": {
+    "name": "Bamberg / Bayern"
+  },
+  "236": {
+    "name": "Bayreuth / Bayern"
+  },
+  "237": {
+    "name": "Coburg / Bayern"
+  },
+  "238": {
+    "name": "Hof / Bayern"
+  },
+  "239": {
+    "name": "Kulmbach / Bayern"
+  },
+  "240": {
+    "name": "Ansbach / Bayern"
+  },
+  "241": {
+    "name": "Erlangen / Bayern"
+  },
+  "242": {
+    "name": "Fürth / Bayern"
+  },
+  "243": {
+    "name": "Nürnberg-Nord / Bayern"
+  },
+  "244": {
+    "name": "Nürnberg-Süd / Bayern"
+  },
+  "245": {
+    "name": "Roth / Bayern"
+  },
+  "246": {
+    "name": "Aschaffenburg / Bayern"
+  },
+  "247": {
+    "name": "Bad Kissingen / Bayern"
+  },
+  "248": {
+    "name": "Main-Spessart / Bayern"
+  },
+  "249": {
+    "name": "Schweinfurt / Bayern"
+  },
+  "250": {
+    "name": "Würzburg / Bayern"
+  },
+  "251": {
+    "name": "Augsburg-Stadt / Bayern"
+  },
+  "252": {
+    "name": "Augsburg-Land / Bayern"
+  },
+  "253": {
+    "name": "Donau-Ries / Bayern"
+  },
+  "254": {
+    "name": "Neu-Ulm / Bayern"
+  },
+  "255": {
+    "name": "Memmingen – Unterallgäu / Bayern"
+  },
+  "256": {
+    "name": "Oberallgäu / Bayern"
+  },
+  "257": {
+    "name": "Ostallgäu / Bayern"
+  },
+  "258": {
+    "name": "Stuttgart I / Baden-Württemberg"
+  },
+  "259": {
+    "name": "Stuttgart II / Baden-Württemberg"
+  },
+  "260": {
+    "name": "Böblingen / Baden-Württemberg"
+  },
+  "261": {
+    "name": "Esslingen / Baden-Württemberg"
+  },
+  "262": {
+    "name": "Nürtingen / Baden-Württemberg"
+  },
+  "263": {
+    "name": "Göppingen / Baden-Württemberg"
+  },
+  "264": {
+    "name": "Waiblingen / Baden-Württemberg"
+  },
+  "265": {
+    "name": "Ludwigsburg / Baden-Württemberg"
+  },
+  "266": {
+    "name": "Neckar-Zaber / Baden-Württemberg"
+  },
+  "267": {
+    "name": "Heilbronn / Baden-Württemberg"
+  },
+  "268": {
+    "name": "Schwäbisch Hall – Hohenlohe / Baden-Württemberg"
+  },
+  "269": {
+    "name": "Backnang – Schwäbisch Gmünd / Baden-Württemberg"
+  },
+  "270": {
+    "name": "Aalen – Heidenheim / Baden-Württemberg"
+  },
+  "271": {
+    "name": "Karlsruhe-Stadt / Baden-Württemberg"
+  },
+  "272": {
+    "name": "Karlsruhe-Land / Baden-Württemberg"
+  },
+  "273": {
+    "name": "Rastatt / Baden-Württemberg"
+  },
+  "274": {
+    "name": "Heidelberg / Baden-Württemberg"
+  },
+  "275": {
+    "name": "Mannheim / Baden-Württemberg"
+  },
+  "276": {
+    "name": "Odenwald – Tauber / Baden-Württemberg"
+  },
+  "277": {
+    "name": "Rhein-Neckar / Baden-Württemberg"
+  },
+  "278": {
+    "name": "Bruchsal – Schwetzingen / Baden-Württemberg"
+  },
+  "279": {
+    "name": "Pforzheim / Baden-Württemberg"
+  },
+  "280": {
+    "name": "Calw / Baden-Württemberg"
+  },
+  "281": {
+    "name": "Freiburg / Baden-Württemberg"
+  },
+  "282": {
+    "name": "Lörrach – Müllheim / Baden-Württemberg"
+  },
+  "283": {
+    "name": "Emmendingen – Lahr / Baden-Württemberg"
+  },
+  "284": {
+    "name": "Offenburg / Baden-Württemberg"
+  },
+  "285": {
+    "name": "Rottweil – Tuttlingen / Baden-Württemberg"
+  },
+  "286": {
+    "name": "Schwarzwald-Baar / Baden-Württemberg"
+  },
+  "287": {
+    "name": "Konstanz / Baden-Württemberg"
+  },
+  "288": {
+    "name": "Waldshut / Baden-Württemberg"
+  },
+  "289": {
+    "name": "Reutlingen / Baden-Württemberg"
+  },
+  "290": {
+    "name": "Tübingen / Baden-Württemberg"
+  },
+  "291": {
+    "name": "Ulm / Baden-Württemberg"
+  },
+  "292": {
+    "name": "Biberach / Baden-Württemberg"
+  },
+  "293": {
+    "name": "Bodensee / Baden-Württemberg"
+  },
+  "294": {
+    "name": "Ravensburg / Baden-Württemberg"
+  },
+  "295": {
+    "name": "Zollernalb – Sigmaringen / Baden-Württemberg"
+  },
+  "296": {
+    "name": "Saarbrücken / Saarland"
+  },
+  "297": {
+    "name": "Saarlouis / Saarland"
+  },
+  "298": {
+    "name": "St. Wendel / Saarland"
+  },
+  "299": {
+    "name": "Homburg / Saarland"
+  }
+}
+

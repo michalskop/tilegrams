@@ -65,6 +65,7 @@ class Ui {
   }
 
   setSelectedDataset(dataset) {
+    console.log('UI row 68', dataset)
     this._selectedDataset = dataset.data
     this._selectedDatasetSum = this.getDatasetSum(this._selectedDataset)
     this._metricDomain = this._calculateIdealDomain()
@@ -149,6 +150,12 @@ class Ui {
   setImportCallback(callback) {
     this._importCallback = (topoJson) => {
       callback(topoJson)
+    }
+  }
+
+  setSaveCallback(callback) {
+    this._saveCallback = () => {
+      callback(this._selectedGeography)
     }
   }
 
@@ -431,6 +438,16 @@ class Ui {
                 onClick={() => this._exportSvgCallback()}
               />
             </fieldset>
+            <fieldset>
+              <ExportButton
+                text='Save for editing'
+                onClick={() => this._saveCallback()}
+              />
+            </fieldset>
+            <div className='instruction save-hint'>
+              {`To continue editing later, upload the saved file
+                via "Upload custom tilegram" above.`}
+            </div>
           </div>
         </div>
         <h2 className='credits'>
